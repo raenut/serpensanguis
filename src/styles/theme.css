@@ -1,4 +1,20 @@
 /* Register design tokens for Tailwind v4 */
+@font-face {
+  font-family: "Site Fontin";
+  src: url("/fonts/fontin.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Site KSLMT";
+  src: url("/fonts/kslmt.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -7,7 +23,7 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-app: var(--font-google-sans-code);
+  --font-app: "Site Fontin", "Site KSLMT", serif;
 }
 
 /* Light theme values */
@@ -24,11 +40,11 @@
 
 /* Dark theme values */
 [data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
+  --background: #090909;
+  --foreground: #e8e8e8;
   --accent: #ff6b01;
   --accent-foreground: #ffffff;
-  --muted: #343f60;
-  --muted-foreground: #afb9ca;
-  --border: #ab4b08;
+  --muted: #181818;
+  --muted-foreground: #a8a8a8;
+  --border: #2a2a2a;
 }

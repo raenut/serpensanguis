@@ -58,6 +58,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+
+  // ===== 新增开始：供 OG 图片生成器使用 =====
   fonts: [
     {
       name: "Google Sans Code",
@@ -69,6 +71,8 @@ export default defineConfig({
       formats: ["woff", "ttf"],
     },
   ],
+  // ===== 新增结束 =====
+
   env: {
     schema: {
       PUBLIC_GOOGLE_SITE_VERIFICATION: envField.string({
