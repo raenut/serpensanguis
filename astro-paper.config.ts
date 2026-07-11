@@ -8,7 +8,7 @@ export default defineAstroPaperConfig({
     author: "yesut",
     profile: "https://t.me/raenut",
     ogImage: "2.JPG",
-    lang: "en"
+    lang: "en",
     timezone: "Asia/Shanghai",
     dir: "ltr",
   },
