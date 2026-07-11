@@ -1,9 +1,11 @@
 ---
-title: "Hello World"
-description: "My first post on serpensanguis."
-pubDatetime: 2026-07-11T00:00:00Z
+title: A Simple Test Post
+date: 2026-07-12
+description: A Simple Test Post.
+pubdatetime: 2026-07-12T05:57:00+08:00
 ---
+A neutral test post for verifying the blog publishing workflow.
 
-# Hello World
+This post does not contain personal information.
 
-This is my first post on serpensanguis.
+#test
