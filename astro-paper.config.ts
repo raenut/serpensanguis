@@ -3,11 +3,11 @@ import { defineAstroPaperConfig } from "./src/types/config";
 export default defineAstroPaperConfig({
   site: {
     url: "https://yseut.pages.dev/",
-    title: "Untitled #1",
+    title: "西西弗斯的末日",
     description: "Essays, books, movies, and personal notes.",
-    author: "yesut",
+    author: "yseut",
     profile: "https://t.me/raenut",
-    ogImage: "2.JPG",
+    ogImage: "4.JPG",
     lang: "en",
     timezone: "Asia/Shanghai",
     dir: "ltr",
@@ -23,23 +23,24 @@ export default defineAstroPaperConfig({
     showArchives: true,
     showBackButton: true,
     editPost: {
-      enabled: true,
-      url: "https://github.com/satnaing/astro-paper/edit/main/",
+      enabled: false,
+      //url: "https://github.com/raenut/serpensanguis/edit/main/",
     },
     search: "pagefind",
   },
   socials: [
     { name: "github",   url: "https://github.com/raenut" },
-    { name: "x",        url: "https://x.com/username" },
-    { name: "telegram", url: "https://t.me/username/" },
-    { name: "mail",     url: "mailto:yourmail@gmail.com" },
+    { name: "x",   url: "https://douban.com/username" },
+    { name: "telegram", url: "https://t.me/raenut" },
+    { name: "mail",     url: "mailto:r@proton.me" },
+
   ],
   shareLinks: [
-    { name: "whatsapp", url: "https://wa.me/?text=" },
     { name: "facebook", url: "https://www.facebook.com/sharer.php?u=" },
     { name: "x",        url: "https://x.com/intent/post?url=" },
     { name: "telegram", url: "https://t.me/share/url?url=" },
-    { name: "pinterest", url: "https://pinterest.com/pin/create/button/?url=" },
-    { name: "mail",     url: "mailto:?subject=See%20this%20post&body=" },
+    //{ name: "pinterest", url: "https://pinterest.com/pin/create/button/?url=" },
+    //{ name: "mail",     url: "mailto:?subject=See%20this%20post&body=" },
+    //{ name: "whatsapp", url: "https://wa.me/?text=" },
   ],
 });
