@@ -118,17 +118,6 @@ export const GET: APIRoute = async ({ props }) => {
                             type: "span",
                             props: {
                               children: [
-                                "by ",
-                                {
-                                  type: "span",
-                                  props: {
-                                    style: {
-                                      color: "transparent",
-                                      fontFamily: "Site Fontin",
-                                    },
-                                    children: '"',
-                                  },
-                                },
                                 {
                                   type: "span",
                                   props: {
@@ -137,7 +126,7 @@ export const GET: APIRoute = async ({ props }) => {
                                       fontWeight: "bold",
                                       fontFamily: "Site Fontin",
                                     },
-                                    children: props.data.author,
+                                    children: "yseut.pages.dev",
                                   },
                                 },
                               ],
