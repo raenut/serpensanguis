@@ -7,7 +7,7 @@ export default defineAstroPaperConfig({
     description: "Essays, books, movies, and personal notes.",
     author: "yseut",
     profile: "https://t.me/raenut",
-    ogImage: "4.JPG",
+    ogImage: "default-og.jpg",
     lang: "en",
     timezone: "Asia/Shanghai",
     dir: "ltr",
