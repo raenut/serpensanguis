@@ -1,27 +1,30 @@
 import type { APIRoute } from "astro";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import satori from "satori";
 import sharp from "sharp";
-import { fontData, experimental_getFontFileURL } from "astro:assets";
-import { getFontPathByWeight } from "@/utils/getFontPathByWeight";
 import config from "@/config";
 
-export const GET: APIRoute = async context => {
-  const fonts = fontData["--font-google-sans-code"];
-  const regularFontPath = getFontPathByWeight(fonts, 400);
-  const boldFontPath = getFontPathByWeight(fonts, 700);
-
-  if (regularFontPath === undefined || boldFontPath === undefined) {
-    throw new Error("Cannot find the font path.");
-  }
-
-  const [regularData, boldData] = await Promise.all([
-    fetch(experimental_getFontFileURL(regularFontPath, context.url)).then(res =>
-      res.arrayBuffer()
-    ),
-    fetch(experimental_getFontFileURL(boldFontPath, context.url)).then(res =>
-      res.arrayBuffer()
-    ),
+export const GET: APIRoute = async () => {
+  const fontDir = join(process.cwd(), "public", "fonts");
+  const [fontin, kslmt] = await Promise.all([
+    readFile(join(fontDir, "fontin.ttf")),
+    readFile(join(fontDir, "kslmt.ttf")),
   ]);
+
+  const mixedText = (value: string) =>
+    Array.from(value).map((character, index) => ({
+      type: "span",
+      props: {
+        key: index,
+        style: {
+          fontFamily: /^[\u0000-\u00ff]$/.test(character)
+            ? "Site Fontin"
+            : "Site KSLMT",
+        },
+        children: character,
+      },
+    }));
 
   const svg = await satori(
     {
@@ -34,7 +37,7 @@ export const GET: APIRoute = async context => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontFamily: "Google Sans Code",
+          fontFamily: "Site Fontin",
         },
         children: [
           {
@@ -99,14 +102,14 @@ export const GET: APIRoute = async context => {
                             type: "p",
                             props: {
                               style: { fontSize: 72, fontWeight: "bold" },
-                              children: config.site.title,
+                              children: mixedText(config.site.title),
                             },
                           },
                           {
                             type: "p",
                             props: {
                               style: { fontSize: 28 },
-                              children: config.site.description,
+                              children: mixedText(config.site.description),
                             },
                           },
                         ],
@@ -126,7 +129,9 @@ export const GET: APIRoute = async context => {
                           type: "span",
                           props: {
                             style: { overflow: "hidden", fontWeight: "bold" },
-                            children: new URL(config.site.url).hostname,
+                            children: mixedText(
+                              new URL(config.site.url).hostname
+                            ),
                           },
                         },
                       },
@@ -145,14 +150,26 @@ export const GET: APIRoute = async context => {
       embedFont: true,
       fonts: [
         {
-          name: "Google Sans Code",
-          data: regularData,
+          name: "Site Fontin",
+          data: fontin,
           weight: 400,
           style: "normal",
         },
         {
-          name: "Google Sans Code",
-          data: boldData,
+          name: "Site Fontin",
+          data: fontin,
+          weight: 700,
+          style: "normal",
+        },
+        {
+          name: "Site KSLMT",
+          data: kslmt,
+          weight: 400,
+          style: "normal",
+        },
+        {
+          name: "Site KSLMT",
+          data: kslmt,
           weight: 700,
           style: "normal",
         },

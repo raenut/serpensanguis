@@ -1,7 +1,6 @@
 import {
   defineConfig,
   envField,
-  fontProviders,
   svgoOptimizer,
 } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
@@ -58,20 +57,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
-  // ===== 新增开始：供 OG 图片生成器使用 =====
-  fonts: [
-    {
-      name: "Google Sans Code",
-      cssVariable: "--font-google-sans-code",
-      provider: fontProviders.google(),
-      fallbacks: ["monospace"],
-      weights: [300, 400, 500, 600, 700],
-      styles: ["normal", "italic"],
-      formats: ["woff", "ttf"],
-    },
-  ],
-  // ===== 新增结束 =====
 
   env: {
     schema: {
