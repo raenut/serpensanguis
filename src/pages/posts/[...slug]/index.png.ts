@@ -96,7 +96,7 @@ export const GET: APIRoute = async ({ props }) => {
                         style: {
                           fontSize: 72,
                           fontWeight: "bold",
-                          fontFamily: "Site Fontin",
+                          fontFamily: "Site Fontin, Site KSLMT",
                           maxHeight: "84%",
                           overflow: "hidden",
                         },
@@ -124,7 +124,7 @@ export const GET: APIRoute = async ({ props }) => {
                                     style: {
                                       overflow: "hidden",
                                       fontWeight: "bold",
-                                      fontFamily: "Site Fontin",
+                                      fontFamily: "Site Fontin, Site KSLMT",
                                     },
                                     children: "yseut.pages.dev",
                                   },
@@ -138,7 +138,7 @@ export const GET: APIRoute = async ({ props }) => {
                               style: {
                                 overflow: "hidden",
                                 fontWeight: "bold",
-                                fontFamily: "Site KSLMT",
+                                fontFamily: "Site Fontin, Site KSLMT",
                               },
                               children: config.site.title,
                             },
