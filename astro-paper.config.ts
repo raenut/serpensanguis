@@ -3,7 +3,7 @@ import { defineAstroPaperConfig } from "./src/types/config";
 export default defineAstroPaperConfig({
   site: {
     url: "https://yseut.pages.dev/",
-    title: "Untitled #1",
+    title: "西西弗斯的末日",
     description: "Essays, books, movies, and personal notes.",
     author: "yseut",
     profile: "https://t.me/raenut",

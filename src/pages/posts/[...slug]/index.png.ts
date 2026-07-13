@@ -33,6 +33,44 @@ export const GET: APIRoute = async ({ props }) => {
     readFile(join(fontDir, "kslmt.ttf")),
   ]);
 
+  const mixedText = (value: string) => {
+    const parts = Array.from(value).reduce<
+      Array<{ value: string; fontFamily: "Site Fontin" | "Site KSLMT" }>
+    >((runs, character) => {
+      const fontFamily = /^[\u0000-\u00ff]$/.test(character)
+        ? "Site Fontin"
+        : "Site KSLMT";
+      const previous = runs.at(-1);
+
+      if (fontFamily === "Site Fontin" && previous?.fontFamily === fontFamily) {
+        previous.value += character;
+      } else {
+        runs.push({ value: character, fontFamily });
+      }
+
+      return runs;
+    }, []);
+
+    return parts.map((part, index) => ({
+      type: "span",
+      props: {
+        key: index,
+        style: { fontFamily: part.fontFamily },
+        children: part.value,
+      },
+    }));
+  };
+
+  const titleWidthUnits = Array.from(props.data.title as string).reduce(
+    (total, character) =>
+      total + (/^[\u0000-\u00ff]$/.test(character) ? 0.55 : 1),
+    0
+  );
+  const titleFontSize = Math.min(
+    72,
+    Math.max(18, Math.floor(940 / Math.max(titleWidthUnits, 1)))
+  );
+
   const svg = await satori(
     {
       type: "div",
@@ -94,13 +132,15 @@ export const GET: APIRoute = async ({ props }) => {
                       type: "p",
                       props: {
                         style: {
-                          fontSize: 72,
+                          display: "flex",
+                          whiteSpace: "nowrap",
+                          fontSize: titleFontSize,
                           fontWeight: "bold",
-                          fontFamily: "Site Fontin, Site KSLMT",
+                          marginTop: "20px",
                           maxHeight: "84%",
                           overflow: "hidden",
                         },
-                        children: props.data.title,
+                        children: mixedText(props.data.title as string),
                       },
                     },
                     {
@@ -110,8 +150,8 @@ export const GET: APIRoute = async ({ props }) => {
                           display: "flex",
                           justifyContent: "space-between",
                           width: "100%",
-                          marginBottom: "8px",
-                          fontSize: 28,
+                          marginBottom: "26px",
+                          fontSize: 36,
                         },
                         children: [
                           {
@@ -126,7 +166,7 @@ export const GET: APIRoute = async ({ props }) => {
                                       fontWeight: "bold",
                                       fontFamily: "Site Fontin, Site KSLMT",
                                     },
-                                    children: "by yseut",
+                                    children: "yseut.pages.dev",
                                   },
                                 },
                               ],
@@ -136,11 +176,12 @@ export const GET: APIRoute = async ({ props }) => {
                             type: "span",
                             props: {
                               style: {
+                                display: "flex",
+                                whiteSpace: "nowrap",
                                 overflow: "hidden",
                                 fontWeight: "bold",
-                                fontFamily: "Site Fontin, Site KSLMT",
                               },
-                              children: config.site.title,
+                              children: mixedText(config.site.title),
                             },
                           },
                         ],
