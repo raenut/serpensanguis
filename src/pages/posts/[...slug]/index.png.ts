@@ -126,7 +126,7 @@ export const GET: APIRoute = async ({ props }) => {
                                       fontWeight: "bold",
                                       fontFamily: "Site Fontin, Site KSLMT",
                                     },
-                                    children: "yseut.pages.dev",
+                                    children: "by yseut",
                                   },
                                 },
                               ],
