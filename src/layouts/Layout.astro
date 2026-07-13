@@ -43,13 +43,17 @@ const rssHref = getRelativeLocaleUrl(
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="icon"
-      type="image/svg+xml"
-      href={`${getAssetPath("favicon.svg")}?v=4`}
+      type="image/png"
+      sizes="512x512"
+      href={`${getAssetPath("favicon.png")}?v=5`}
     />
+
+    <link rel="icon" href={`${getAssetPath("favicon.ico")}?v=5`} sizes="any" />
 
     <link
       rel="apple-touch-icon"
-      href={`${getAssetPath("favicon.png")}?v=4`}
+      sizes="180x180"
+      href={`${getAssetPath("apple-touch-icon.png")}?v=5`}
     />
 
     <link rel="canonical" href={canonicalURL} />
